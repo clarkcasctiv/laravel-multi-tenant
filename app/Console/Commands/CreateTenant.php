@@ -12,9 +12,14 @@ use Hyn\Tenancy\Models\Hostname;
 use Hyn\Tenancy\Models\Website;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use Hyn\Tenancy\Traits\UsesTenantConnection;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class CreateTenant extends Command
 {
+    use UsesTenantConnection, HasRoles;
     protected $signature = 'tenant:create {name} {email}';
     protected $description = 'Creates a tenant with the provided name and email address e.g. php artisan tenant:create boise boise@example.com';
 
@@ -65,6 +70,8 @@ class CreateTenant extends Command
     private function addAdmin($name, $email, $password)
     {
         $admin = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+         $admin->guard_name = 'web';
+         $admin->assignRole('admin');
 
         return $admin;
     }
