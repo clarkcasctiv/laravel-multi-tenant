@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -53,7 +52,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    'url_base' => env('APP_URL_BASE','http://localhost'),
+    'url_base' => env('APP_URL_BASE', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +120,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -156,6 +154,8 @@ return [
         Hyn\Tenancy\Providers\TenancyProvider::class,
         // Hyn multi tenancy webserver integration.
         Hyn\Tenancy\Providers\WebserverProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -165,7 +165,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -180,7 +179,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -215,6 +213,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
-
 ];
